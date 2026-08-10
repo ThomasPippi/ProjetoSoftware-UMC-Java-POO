@@ -1,6 +1,7 @@
 package filmes;
 
 public class Filme {
+
     String titulo;
     String genero;
     int anoLancamento;
