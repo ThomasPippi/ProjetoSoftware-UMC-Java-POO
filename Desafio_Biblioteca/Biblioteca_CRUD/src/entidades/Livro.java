@@ -28,24 +28,26 @@ public class Livro extends ItemBiblioteca implements Emprestavel{
 
     @Override
     public String exibirInformacoes() {
-        return "\nLivro:" + super.exibirInformacoes() +  "\nISBN: " + ISBN + "\nDisponível: " + disponivel;
+        return "\nLivro:" + super.exibirInformacoes() +  "\nISBN: " + ISBN + "\nDisponível: " + (disponivel ? "Sim" : "Não");
     }
 
     @Override
     public void emprestar() {
         if (this.disponivel) {
-            System.out.println("Item emprestado com sucesso");
+            this.disponivel = false;
+            System.out.println("\nItem emprestado com sucesso");
         } else {
-            System.out.println("Item indisponível para empréstimo");
+            System.out.println("\nItem indisponível para empréstimo");
         }
     }
 
     @Override
     public void devolver() {
         if(!this.disponivel) {
-            System.out.println("Item devolvido com sucesso");
+            this.disponivel = true;
+            System.out.println("\nItem devolvido com sucesso");
         } else {
-            System.out.println("O item já está disponível");
+            System.out.println("\nO item já está disponível");
         }
     }
 

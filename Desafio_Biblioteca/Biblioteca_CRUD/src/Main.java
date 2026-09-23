@@ -7,11 +7,20 @@ public class Main {
         Revista revista = new Revista("ISS - Maravilha da Humanidade", "Escriba de Cristo", 2023, 14, true);
         Ebook ebook = new Ebook("Use a Cabeça Java", " Kathy Sierra", 2024, 56.6);
 
+        System.out.println("--- ITENS DA BIBLIOTECA ---");
         System.out.println(livro1.exibirInformacoes());
         System.out.println(livro2.exibirInformacoes());
         System.out.println(revista.exibirInformacoes());
         System.out.println(ebook.exibirInformacoes());
 
+        livro1.emprestar();
+
+        System.out.println(livro1.exibirInformacoes());
+
+        livro1.emprestar();
+
+        livro1.devolver();
+        System.out.println(livro1.exibirInformacoes());
         
     }
 }
