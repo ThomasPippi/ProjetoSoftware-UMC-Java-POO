@@ -1,4 +1,4 @@
-package com.outlet.premium;
+package com.lojaRoupas.premium;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

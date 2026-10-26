@@ -1,4 +1,4 @@
-package com.outlet.premium;
+package com.lojaRoupas.premium;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
