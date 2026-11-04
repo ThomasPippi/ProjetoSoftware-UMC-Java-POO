@@ -2,7 +2,7 @@ package com.lojaRoupas.premium.dto;
 
 import com.lojaRoupas.premium.enums.Tamanho;
 
-public record DadosCadastroRoupa(
+public record DadosCadastroProduto(
         String marca,
         String peca,
         Tamanho tamanho,
