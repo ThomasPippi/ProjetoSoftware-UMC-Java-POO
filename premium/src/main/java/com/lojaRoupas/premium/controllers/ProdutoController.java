@@ -1,5 +1,6 @@
 package com.lojaRoupas.premium.controllers;
 
+import com.lojaRoupas.premium.dto.DadosAtualizaProduto;
 import com.lojaRoupas.premium.dto.DadosCadastroProduto;
 import com.lojaRoupas.premium.dto.DadosListagemProduto;
 import com.lojaRoupas.premium.model.Produto;
@@ -32,5 +33,12 @@ public class ProdutoController {
     @GetMapping
     public Page<DadosListagemProduto> listarProdutos2(Pageable pageable) {
         return repositoryProduto.findAll(pageable).map(DadosListagemProduto::new);
+    }
+
+    //PUT
+    @PutMapping
+    public void atualizarProduto(@RequestBody DadosAtualizaProduto oldProduto) {
+        var newProduto = repositoryProduto.getReferenceById(oldProduto.id());
+        System.out.println(newProduto.toString());
     }
 }
