@@ -37,6 +37,16 @@ public class ProdutoController {
     public Page<DadosListagemProduto> listarProdutos2(Pageable pageable) {
         return repositoryProduto.findAll(pageable).map(DadosListagemProduto::new);
     }
+    //GET COM FILTRO
+    @GetMapping("/marca/{marca}")
+    public Page<DadosListagemProduto> listarProdutosPorMarca(@PathVariable String marca, Pageable pageable) {
+        return repositoryProduto.findByMarca(marca, pageable).map(DadosListagemProduto::new);
+    }
+    //Buscar
+    @GetMapping("/buscar")
+    public Page<DadosListagemProduto> listarProdutosMarcaPorBuscar(@RequestParam String marca, Pageable pageable) {
+        return repositoryProduto.findByMarcaContainingIgnoreCase(marca, pageable).map(DadosListagemProduto::new);
+    }
 
     @PutMapping
     @Transactional //Garante o sucesso da transação ou dá rollback
