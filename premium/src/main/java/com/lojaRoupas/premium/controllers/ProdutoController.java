@@ -5,9 +5,11 @@ import com.lojaRoupas.premium.dto.DadosCadastroProduto;
 import com.lojaRoupas.premium.dto.DadosListagemProduto;
 import com.lojaRoupas.premium.model.Produto;
 import com.lojaRoupas.premium.repository.RepositoryProduto;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class ProdutoController {
     private RepositoryProduto repositoryProduto;
 
     @PostMapping
+    @Transactional
     public void cadastrarProduto(@RequestBody DadosCadastroProduto produto) {
         repositoryProduto.save(new Produto(produto));
     }
@@ -35,10 +38,16 @@ public class ProdutoController {
         return repositoryProduto.findAll(pageable).map(DadosListagemProduto::new);
     }
 
-    //PUT
     @PutMapping
+    @Transactional //Garante o sucesso da transação ou dá rollback
     public void atualizarProduto(@RequestBody DadosAtualizaProduto oldProduto) {
         var newProduto = repositoryProduto.getReferenceById(oldProduto.id());
-        System.out.println(newProduto.toString());
+        newProduto.updateInfo(oldProduto);
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public  void deletaProduto(@PathVariable Long id){
+        repositoryProduto.deleteById(id);
     }
 }

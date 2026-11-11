@@ -1,5 +1,6 @@
 package com.lojaRoupas.premium.model;
 
+import com.lojaRoupas.premium.dto.DadosAtualizaProduto;
 import com.lojaRoupas.premium.dto.DadosCadastroProduto;
 import com.lojaRoupas.premium.enums.Tamanho;
 import jakarta.persistence.*;
@@ -35,4 +36,26 @@ public class Produto {
         this.qtde = produto.qtde();
         this.valor = produto.valor();
     }
+
+    public void updateInfo(DadosAtualizaProduto oldProduto) {
+        if (oldProduto.marca() != null || !oldProduto.marca().isBlank()) {
+            this.marca = oldProduto.marca();
+        }
+        if (oldProduto.peca() != null) {
+            this.peca = oldProduto.peca();
+        }
+        if (oldProduto.tamanho() != null) {
+            this.tamanho = oldProduto.tamanho();
+        }
+        if (oldProduto.cor() != null) {
+            this.cor = oldProduto.cor();
+        }
+        if (oldProduto.qtde() >= 0) {
+            this.qtde = oldProduto.qtde();
+        }
+        if (oldProduto.valor() >= 0) {
+            this.valor = oldProduto.valor();
+        }
+    }
+
 }
